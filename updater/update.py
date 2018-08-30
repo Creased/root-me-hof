@@ -135,17 +135,8 @@ def top_100():
 		add_user(username, 'John McClane')
 
 # ## STARTING POINT####
-if len(sys.argv) < 2:
-	wrong_arg()
-else:
-	if sys.argv[1] == "update":
-		update()
-	elif sys.argv[1] == "top-100":
-		top_100()
-	elif sys.argv[1] == "add" and len(sys.argv) == 4:
-		add_user(sys.argv[2],sys.argv[3])
-	elif sys.argv[1] == "delete" and len(sys.argv) == 3:
-		delete_user(sys.argv[2])
-	else:
-		wrong_arg()
+with open('users.json', 'r') as data_file:
+    users = json.load(data_file)
 
+for user in users:
+	add_user(user, users[user])
